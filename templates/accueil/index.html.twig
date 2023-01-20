@@ -7,14 +7,19 @@
     <center><p class="display-4">Bienvenue sur l'application de gestion d'inventaire INVENTORY</p>
     <hr class="my-4">
     <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#" role="button">CATEGORIE 1</a>
+     {# <a class="btn btn-primary btn-lg" href="#" role="button">CATEGORIE 1</a>
       <a class="btn btn-primary btn-lg" href="#" role="button">CATEGORIE 2</a>
       <a class="btn btn-primary btn-lg" href="#" role="button">TUTO</a>
-    </p></center>
+    </p></center>#}
+
+        {% if app.user %}
+            {% else %}
+            <button  type="button" class="btn btn-outline-secondary"><a href=" {{path('app_login')}} " class="nav-link">Connexion</a></button>
+        {% endif %}
 </div>        
 
-    <div style="text-align: right;">
-        <img src={{asset("image/sncf.jpg")}} width="10%">
-    </div>
+<div style="text-align: right;">
+    <img src={{asset("image/sncf.jpg")}} width="10%">
+</div>
 
 {% endblock %}
