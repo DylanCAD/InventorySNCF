@@ -24,6 +24,7 @@ class UserFixtures extends Fixture
             $user   ->setNom($faker->lastName())
                     ->setPrenom($faker->firstName())
                     ->setUuid($faker->uuid())
+                    ->setRoles(['ROLE_UTILISATEUR'])
                     ->setPassword( $this->userPassword->hashPassword(
                         $user,
                         "SNCFutilisateur1234"

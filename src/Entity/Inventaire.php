@@ -26,7 +26,7 @@ class Inventaire
 
     /**
      * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="inventaires")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $utilisateur;
 
@@ -35,14 +35,27 @@ class Inventaire
      */
     private $objets;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Tel::class, mappedBy="Inventaire")
+     */
+    private $tels;
+
     public function __construct()
     {
         $this->objets = new ArrayCollection();
+        $this->tels = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getCathegorieInventaire(): ?string
@@ -93,6 +106,36 @@ class Inventaire
             // set the owning side to null (unless already changed)
             if ($objet->getInventaire() === $this) {
                 $objet->setInventaire(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tel>
+     */
+    public function getTels(): Collection
+    {
+        return $this->tels;
+    }
+
+    public function addTel(Tel $tel): self
+    {
+        if (!$this->tels->contains($tel)) {
+            $this->tels[] = $tel;
+            $tel->setInventaire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTel(Tel $tel): self
+    {
+        if ($this->tels->removeElement($tel)) {
+            // set the owning side to null (unless already changed)
+            if ($tel->getInventaire() === $this) {
+                $tel->setInventaire(null);
             }
         }
 

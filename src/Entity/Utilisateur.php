@@ -49,10 +49,16 @@ class Utilisateur
      */
     private $inventaires;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Tel::class, mappedBy="Utilisateur")
+     */
+    private $tels;
+
     public function __construct()
     {
         $this->id_Admin = new ArrayCollection();
         $this->inventaires = new ArrayCollection();
+        $this->tels = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -162,6 +168,36 @@ class Utilisateur
             // set the owning side to null (unless already changed)
             if ($inventaire->getIdUtilisateur() === $this) {
                 $inventaire->setIdUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tel>
+     */
+    public function getTels(): Collection
+    {
+        return $this->tels;
+    }
+
+    public function addTel(Tel $tel): self
+    {
+        if (!$this->tels->contains($tel)) {
+            $this->tels[] = $tel;
+            $tel->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTel(Tel $tel): self
+    {
+        if ($this->tels->removeElement($tel)) {
+            // set the owning side to null (unless already changed)
+            if ($tel->getUtilisateur() === $this) {
+                $tel->setUtilisateur(null);
             }
         }
 

@@ -13,11 +13,40 @@
     </head>
     <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      
-             {% if app.user and is_granted('ROLE_USER') %}
+          {% if app.user and is_granted('ROLE_ADMIN') %}
+  <div class="container-fluid">
+                <a class="navbar-brand" href=" {{path('accueil')}}"><img style="width: 60px; border-radius: 20%;" src={{asset("image/sncf1.gif")}} alt=""></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                   <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                    <a class="nav-link" href=" {{path('admin_objets')}} ">Categorie 1</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href=" {{path('admin_tels')}} ">Categorie 2</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">TuTo</a>
+                        <div class="dropdown-menu">
+                    <a class="dropdown-item" href=" ">TuTo 1</a>
+                    <a class="dropdown-item" href=" ">TuTo 2</a>
+                    <a class="dropdown-item" href=" ">TuTo 3</a>
+             
+                </div>
+                    </li>
+                </ul>
+            
+                </div>
+            </div>
+
+          {% endif %}
+
+             {% if app.user and is_granted('ROLE_UTILISATEUR') %}
                      
             <div class="container-fluid">
-                <a class="navbar-brand" href=" {{path('accueil')}}">Inventory</a>
+                <a class="navbar-brand" href=" {{path('accueil')}}"><img style="width: 60px; border-radius: 20%;" src={{asset("image/sncf1.gif")}} alt=""></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -49,7 +78,7 @@
             {% if app.user %}
          
                 <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{app.user.Nom}} {{app.user.Prenom}}</a>
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> {{app.user.Nom}} {{app.user.Prenom}}</a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href=" {{path('app_logout')}} ">Se déconnecter</a>
                 </div>
@@ -67,6 +96,14 @@
   
 
         <div class="container">
+        {# affiche tous les messages flash #}
+        {% for label, messages in app.flashes %}
+            <div class="alert alert-{{label}} mt-3">
+            {% for message in messages %}
+                <p> {{message}} </p>
+            {% endfor %}
+            </div>
+        {% endfor %}
         {% block body %}{% endblock %}
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

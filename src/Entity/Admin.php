@@ -44,9 +44,15 @@ class Admin
      */
     private $objets;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Tel::class, mappedBy="Admin")
+     */
+    private $tels;
+
     public function __construct()
     {
         $this->objets = new ArrayCollection();
+        $this->tels = new ArrayCollection();
     }
 
 
@@ -127,6 +133,36 @@ class Admin
             // set the owning side to null (unless already changed)
             if ($objet->getAdmin() === $this) {
                 $objet->setAdmin(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tel>
+     */
+    public function getTels(): Collection
+    {
+        return $this->tels;
+    }
+
+    public function addTel(Tel $tel): self
+    {
+        if (!$this->tels->contains($tel)) {
+            $this->tels[] = $tel;
+            $tel->setAdmin($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTel(Tel $tel): self
+    {
+        if ($this->tels->removeElement($tel)) {
+            // set the owning side to null (unless already changed)
+            if ($tel->getAdmin() === $this) {
+                $tel->setAdmin(null);
             }
         }
 

@@ -13,8 +13,8 @@
             Vous êtes connecté sous le nom {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
         </div>
     {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Connectez vous</h1>
+<br>
+    <h1 class="h3 mb-3 font-weight-normal">Connectez vous sur Inventory</h1>
     <label for="inputUuid">Entrez votre ID</label>
     <input type="text" value="{{ last_username }}" name="uuid" id="inputUuid" class="form-control" autocomplete="username" required autofocus>
     <label for="inputPassword">Entrez votre mot de passe</label>
@@ -35,6 +35,7 @@
         </div>
     #}
 
+    <br>
     <button class="btn btn-lg btn-primary" type="submit">
         Se connecter
     </button>

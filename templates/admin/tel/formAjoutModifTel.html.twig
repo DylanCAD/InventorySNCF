@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ajout tel{% endblock %}
+
+{% block body %}
+<h1 class="text-center pt-2 ">
+{% if (app.request.attributes.get('_route')=="admin_tel_ajout") %}
+  Ajout
+{% else %}
+  Modification
+{% endif %}
+d'un tel</h1>
+
+{{form_start(formTel,{'attr':{'novalidate':'novalidate'}})}}
+
+{{form_row(formTel.libelleTel)}}
+{{form_row(formTel.lastModifTel)}}
+{{form_row(formTel.quantiteTel)}}
+<div class="row">
+  <div class="col"><a href="{{path('admin_tels')}} " class="btn btn-warning btn-block">Annuler</a></div>
+  <div class="col"><input type="submit", class="btn btn-success btn-block" value=
+  {% if (app.request.attributes.get('_route')=="admin_tel_ajout") %}
+  "Ajouter le tel"
+  {% else %}
+  "Modifier le tel"
+  {% endif %}></div>
+</div>
+
+{{form_end(formTel)}}
+{% endblock %}

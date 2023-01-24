@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}gestion tels{% endblock %}
+
+{% block body %}
+<h1 class="text-center pt-2 ">Gestion des tels</h1>
+<a href=" {{path('admin_tel_ajout')}} " class="btn btn-success">Ajouter un tel</a>
+<hr>        
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col-1">ID PROD</th>
+      <th scope="col-5">Libellé</th>
+      <th scope="col-2">Dernière Modification</th>
+      <th scope="col-2">Quantité</th>
+      <th scope="col-2">Actions</th>
+    </tr>
+  </thead>
+  
+
+  <tbody>
+        {% for leTel in lesTels %}
+            <tr>
+            <td scope="col-1">{{leTel.id}}</td>
+            <td scope="col-7">
+            <p>
+            {{leTel.libelleTel}}
+            </p>
+            </td>
+           
+            <td scope="col-1">{{leTel.lastModifTel|date("m/d/Y")}}</td>
+            <td scope="col-1">{{leTel.quantiteTel}}</td>
+           <td class="col-2">
+            <a href=" {{path('admin_tel_modif', {'id': leTel.id })}} " class="btn btn-primary"><i class="fas fa-pen"></i></a>
+            <a class="btn btn-danger" 
+            data-toggle="modal" 
+            data-target="#modalSimple"
+            data-titre="Suppression d'un tel"
+            data-message="Etes vous sur de vouloir supprimer le tel : {{ leTel.libelleTel }}"
+            data-libelleBouton = "Supprimer le tel"
+            data-lien= " {{ path('admin_tel_suppression', {'id': leTel.id}) }}"
+            ><i class="far fa-trash-alt"></i></a>
+            </td>
+            </tr>
+        {% endfor %}
+</tbody>
+</table>
+{% endblock %}
+{% block javascripts %}
+  {% include "include/_modale.html.twig" %}
+{% endblock %}

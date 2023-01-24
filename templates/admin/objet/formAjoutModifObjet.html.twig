@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ajout objet{% endblock %}
+
+{% block body %}
+<h1 class="text-center pt-2 ">
+{% if (app.request.attributes.get('_route')=="admin_objet_ajout") %}
+  Ajout
+{% else %}
+  Modification
+{% endif %}
+d'un objet</h1>
+
+{{form_start(formObjet,{'attr':{'novalidate':'novalidate'}})}}
+
+{{form_row(formObjet.libelleObjet)}}
+{{form_row(formObjet.lastModifObjet)}}
+{{form_row(formObjet.quantiteObjet)}}
+<div class="row">
+  <div class="col"><a href="{{path('admin_objets')}} " class="btn btn-warning btn-block">Annuler</a></div>
+  <div class="col"><input type="submit", class="btn btn-success btn-block" value=
+  {% if (app.request.attributes.get('_route')=="admin_objet_ajout") %}
+  "Ajouter l'objet"
+  {% else %}
+  "Modifier l'objet"
+  {% endif %}></div>
+</div>
+
+{{form_end(formObjet)}}
+{% endblock %}

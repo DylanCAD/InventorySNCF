@@ -47,13 +47,13 @@ class Objet
 
     /**
      * @ORM\ManyToOne(targetEntity=Admin::class, inversedBy="objets")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $Admin;
 
     /**
      * @ORM\ManyToOne(targetEntity=Inventaire::class, inversedBy="objets")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $Inventaire;
 
@@ -66,6 +66,13 @@ class Objet
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getLibelleObjet(): ?string
