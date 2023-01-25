@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ajout objet{% endblock %}
+{% block title %}modif objet{% endblock %}
 
 {% block body %}
 <h1 class="text-center pt-2 ">
-{% if (app.request.attributes.get('_route')=="admin_objet_modif") %}
-  Ajout
-{% else %}
+{% if (app.request.attributes.get('_route')=="utilisateur_objet_modif") %}
+ Modification
+ {% else %}
   Modification
 {% endif %}
 d'un objet</h1>
@@ -17,9 +17,9 @@ d'un objet</h1>
 {{form_row(formObjet.lastModifObjet)}}
 {{form_row(formObjet.quantiteObjet)}}
 <div class="row">
-  <div class="col"><a href="{{path('admin_objets')}} " class="btn btn-warning btn-block">Annuler</a></div>
+  <div class="col"><a href="{{path('utilisateur_objets')}} " class="btn btn-warning btn-block">Annuler</a></div>
   <div class="col"><input type="submit", class="btn btn-success btn-block" value=
-  {% if (app.request.attributes.get('_route')=="admin_objet_ajout") %}
+  {% if (app.request.attributes.get('_route')=="utilisateur_objet_ajout") %}
   "Ajouter l'objet"
   {% else %}
   "Modifier l'objet"
