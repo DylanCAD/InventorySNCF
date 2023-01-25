@@ -9,27 +9,30 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col-1">ID PROD</th>
-      <th scope="col-5">Libellé</th>
+      <th scope="col-1">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ID PROD</th>
+      <th scope="col-5">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Libellé</th>
       <th scope="col-2">Dernière Modification</th>
       <th scope="col-2">Quantité</th>
       <th scope="col-2">Actions</th>
     </tr>
   </thead>
   
-
   <tbody>
         {% for leTel in lesTels %}
+              {% if (leTel.quantiteTel == 0) %}
+              <table class="table table-danger">
+              {% else %}
+              <table class="table table-hover">
+              {% endif %}
             <tr>
             <td scope="col-1">{{leTel.id}}</td>
-            <td scope="col-7">
+            <td scope="col-5">
             <p>
             {{leTel.libelleTel}}
             </p>
             </td>
-           
-            <td scope="col-1">{{leTel.lastModifTel|date("m/d/Y")}}</td>
-            <td scope="col-1">{{leTel.quantiteTel}}</td>
+            <td scope="col-2">{{leTel.lastModifTel|date("m/d/Y")}}</td>
+            <td scope="col-2">{{leTel.quantiteTel}}</td>
            <td class="col-2">
             <a href=" {{path('admin_tel_modif', {'id': leTel.id })}} " class="btn btn-primary"><i class="fas fa-pen"></i></a>
             <a class="btn btn-danger" 

@@ -1,0 +1,14 @@
+table td{
+    height: 50px;
+    width: 200px;
+ 
+    vertical-align: top;
+    text-align: center;
+}
+
+table th{
+
+
+    vertical-align: top;
+    text-align: left;
+}

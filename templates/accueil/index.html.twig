@@ -12,14 +12,18 @@
       <a class="btn btn-primary btn-lg" href="#" role="button">TUTO</a>
     </p></center>#}
 
+<div>
+    <div style="float: left">
+            <img src={{asset("image/giphy.gif")}} width="90%">
+    </div>
+    <div>
+        <span color="primary" class="ColorSpan"><h4>INVENTORY,</h4></span>
+<p>Bienvenue sur l'application de gestion d'inventaire INVENTORY.</p>
+</div>              
         {% if app.user %}
             {% else %}
             <button  type="button" class="btn btn-outline-secondary"><a href=" {{path('app_login')}} " class="nav-link">Connexion</a></button>
         {% endif %}
+<div>
 
-<div style="text-align: center;">
-    <img src={{asset("image/giphy.gif")}} width="40%">
-</div>
-
-</div> 
 {% endblock %}

@@ -9,8 +9,8 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col-1">ID PROD</th>
-      <th scope="col-5">Libellé</th>
+      <th scope="col-1">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ID PROD</th>
+      <th scope="col-5">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Libellé</th>
       <th scope="col-2">Dernière Modification</th>
       <th scope="col-2">Quantité</th>
       <th scope="col-2">Actions</th>
@@ -20,6 +20,12 @@
 
   <tbody>
         {% for leObjet in lesObjets %}
+        {% if (leObjet.quantiteObjet == 0) %}
+              <table class="table table-danger">
+              {% else %}
+              <table class="table table-hover">
+              {% endif %}
+
             <tr>
             <td scope="col-1">{{leObjet.id}}</td>
             <td scope="col-7">
