@@ -7,8 +7,10 @@ table td{
 }
 
 table th{
-
-
     vertical-align: top;
     text-align: left;
+}
+
+h1{
+    color:white;
 }
