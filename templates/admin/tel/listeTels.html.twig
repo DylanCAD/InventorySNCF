@@ -3,7 +3,7 @@
 {% block title %}gestion tels{% endblock %}
 
 {% block body %}
-<h1 class="text-center pt-2 ">Gestion des tels</h1>
+<h2 class="text-center pt-2 ">Gestion des tels</h2>
 <a href=" {{path('admin_tel_ajout')}} " class="btn btn-success">Ajouter un tel</a>
 <hr>        
 <table class="table table-hover">
@@ -27,6 +27,11 @@
             <tr>
             <td scope="col-1">{{leTel.id}}</td>
             <td scope="col-5">
+            <p class="d-flex flex-row">
+                <div class="align-self-center badge badge-success"> {{leTel.appareil.genreappareil}}</div>
+                <div class="align-self-center badge badge-success"> {{leTel.marque.nommarque}}</div>
+                <div class="align-self-center badge badge-success"> {{leTel.modele.nommodele}}</div>
+            </p>
             <p>
             {{leTel.libelleTel}}
             </p>

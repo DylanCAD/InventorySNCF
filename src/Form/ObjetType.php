@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Objet;
+use App\Entity\Marque;
+use App\Entity\Modele;
+use App\Entity\Appareil;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -38,6 +41,21 @@ class ObjetType extends AbstractType
                 'attr'=>[
                     "placeholder"=>"Saisir la quantite de l'objet"
                 ]
+            ])
+            ->add('appareil', EntityType::class, [ 
+                'label'=> "Genre de l'appareil",
+                'class' => Appareil::class,
+                'choice_label' => 'genreappareil'
+            ])
+            ->add('marque', EntityType::class, [ 
+                'label'=> "Nom de la marque",
+                'class' => Marque::class,
+                'choice_label' => 'nommarque'
+            ])
+            ->add('modele', EntityType::class, [ 
+                'label'=> "Nom du modele",
+                'class' => Modele::class,
+                'choice_label' => 'nommodele'
             ])
             //->add('valider', SubmitType::class)
         ;

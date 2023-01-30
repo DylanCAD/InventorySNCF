@@ -12,8 +12,12 @@
 d'un objet</h1>
 
 {{form_start(formObjet,{'attr':{'novalidate':'novalidate'}})}}
-
 {{form_row(formObjet.libelleObjet)}}
+<div class="row">
+  <div class="col">{{form_row(formObjet.appareil)}}</div>
+  <div class="col">{{form_row(formObjet.marque)}}</div>
+  <div class="col">{{form_row(formObjet.modele)}}</div>
+</div>
 {{form_row(formObjet.lastModifObjet)}}
 {{form_row(formObjet.quantiteObjet)}}
 <div class="row">

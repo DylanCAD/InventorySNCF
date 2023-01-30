@@ -3,14 +3,14 @@
 {% block title %}gestion objets{% endblock %}
 
 {% block body %}
-<h1 class="text-center pt-2 ">Gestion des objets</h1>
+<h2 class="text-center pt-2 ">Gestion des objets</h2>
 {#<a href=" {{path('utilisateur_objet_ajout')}} " class="btn btn-success">Ajouter un objet</a>#}
 <hr>        
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col-1">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ID PROD</th>
-      <th scope="col-5">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Libellé</th>
+      <th scope="col-1"> ID PROD</th>
+      <th scope="col-5"> Libellé</th>
       <th scope="col-2">Dernière Modification</th>
       <th scope="col-2">Quantité</th>
       <th scope="col-2">Action</th>
@@ -31,7 +31,11 @@
             <tr>
             <td scope="col-1">{{leObjet.id}}</td>
             <td scope="col-7">
-            <p>
+                <p class="d-flex flex-row">
+                <div class="align-self-center badge badge-success"> {{leObjet.appareil.genreappareil}}</div>
+                <div class="align-self-center badge badge-success"> {{leObjet.marque.nommarque}}</div>
+                <div class="align-self-center badge badge-success"> {{leObjet.modele.nommodele}}</div>
+            </p>
             {{leObjet.libelleObjet}}
             </p>
             </td>

@@ -16,7 +16,6 @@ h1{
     color:white;
     text-decoration : underline;
 
-
 }
 </style>
     {% if error %}
@@ -29,7 +28,7 @@ h1{
         </div>
     {% endif %}
 <br>
-    <h1 class="display-4">Connectez vous sur Inventory </h1>
+    <h1 class="display-9">Connectez vous sur Inventory </h1>
     <label for="inputUuid">Entrez votre ID</label>
     <input type="text" value="{{ last_username }}" name="uuid" id="inputUuid" class="form-control" autocomplete="username" required autofocus>
     <label for="inputPassword">Entrez votre mot de passe</label>
@@ -51,8 +50,10 @@ h1{
     #}
 
     <br>
-    <button class="btn btn-lg btn-primary" type="submit">
+    <center>    
+    <button class="btn btn-secondary" type="submit">
         Se connecter
     </button>
+    </center>
 </form>
 {% endblock %}

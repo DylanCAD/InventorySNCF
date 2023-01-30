@@ -47,6 +47,21 @@ class Tel
      */
     private $Inventaire;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Appareil::class, inversedBy="tels")
+     */
+    private $Appareil;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="tels")
+     */
+    private $Marque;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Modele::class, inversedBy="tels")
+     */
+    private $Modele;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -127,6 +142,42 @@ class Tel
     public function setInventaire(?Inventaire $Inventaire): self
     {
         $this->Inventaire = $Inventaire;
+
+        return $this;
+    }
+
+    public function getAppareil(): ?Appareil
+    {
+        return $this->Appareil;
+    }
+
+    public function setAppareil(?Appareil $Appareil): self
+    {
+        $this->Appareil = $Appareil;
+
+        return $this;
+    }
+
+    public function getMarque(): ?Marque
+    {
+        return $this->Marque;
+    }
+
+    public function setMarque(?Marque $Marque): self
+    {
+        $this->Marque = $Marque;
+
+        return $this;
+    }
+
+    public function getModele(): ?Modele
+    {
+        return $this->Modele;
+    }
+
+    public function setModele(?Modele $Modele): self
+    {
+        $this->Modele = $Modele;
 
         return $this;
     }
