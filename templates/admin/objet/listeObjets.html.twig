@@ -10,7 +10,7 @@
   <thead>
     <tr>
       <th scope="col-1"> ID PROD</th>
-      <th scope="col-5"> Libellé</th>
+      <th scope="col-5"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp Libellé</th>
       <th scope="col-2">Dernière Modification</th>
       <th scope="col-2">Quantité</th>
       <th scope="col-2">Actions</th>
@@ -40,7 +40,21 @@
             </td>
            
             <td scope="col-1">{{leObjet.lastModifObjet|date("m/d/Y")}}</td>
-            <td scope="col-1">{{leObjet.quantiteObjet}}</td>
+            
+
+            <td scope="col-1">
+           <div class="input-group input-group-sm justify-content-center">
+             <a href="{{ path("admin_objets_decrease_quantite", { 'id': leObjet.id})}}" class="btn btn-sm btn-outline-primary">
+    <span class="fas fa-minus"></span>
+     </a>
+     <span class="input-group-text bg-white border-top border-bottom"> {{leObjet.quantiteObjet}}</span>   
+    <a href="{{ path("admin_objets_increase_quantite", { 'id': leObjet.id})}}" class="btn btn-sm btn-outline-primary">
+      <span class="fas fa-plus"></span>
+  </a>
+
+  </div>
+            </td>
+
            <td class="col-2">
             <a href=" {{path('admin_objet_modif', {'id': leObjet.id })}} " class="btn btn-primary"><i class="fas fa-pen"></i></a>
             <a class="btn btn-danger" 

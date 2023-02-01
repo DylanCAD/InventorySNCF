@@ -9,10 +9,33 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ObjetController extends AbstractController
 {
+
+    /**
+     * @Route("/admin/objet/{id}/augmenter-quantite", name="admin_objets_increase_quantite")
+     */    
+    public function increaseQuantite(Objet $objet): RedirectResponse
+    {
+        $objet->increaseQuantite();
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('admin_objets');
+    }
+
+
+    /**
+     * @Route("/admin/objet/{id}/diminuer-quantite", name="admin_objets_decrease_quantite")
+     */
+    public function decreaseQuantite(Objet $objet): RedirectResponse
+    {
+        $objet->decreaseQuantite();
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('admin_objets');
+    }
+
     /**
      * @Route("/admin/objets", name="admin_objets", methods={"GET"})
      */

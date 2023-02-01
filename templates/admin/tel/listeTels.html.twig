@@ -37,7 +37,22 @@
             </p>
             </td>
             <td scope="col-2">{{leTel.lastModifTel|date("m/d/Y")}}</td>
-            <td scope="col-2">{{leTel.quantiteTel}}</td>
+
+
+
+<td scope="col-1">
+           <div class="input-group input-group-sm justify-content-center">
+             <a href="{{ path("tel_decrease_quantite", { 'id': leTel.id})}}" class="btn btn-sm btn-outline-primary">
+    <span class="fas fa-minus"></span>
+     </a>
+     <span class="input-group-text bg-white border-top border-bottom"> {{leTel.quantiteTel}}</span>   
+    <a href="{{ path("tel_increase_quantite", { 'id': leTel.id})}}" class="btn btn-sm btn-outline-primary">
+      <span class="fas fa-plus"></span>
+  </a>
+
+  </div>
+            </td>
+
            <td class="col-2">
             <a href=" {{path('admin_tel_modif', {'id': leTel.id })}} " class="btn btn-primary"><i class="fas fa-pen"></i></a>
             <a class="btn btn-danger" 

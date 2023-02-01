@@ -21,6 +21,7 @@ d'un Tel</h1>
 </div>
 {{form_row(formTel.lastModifTel)}}
 {{form_row(formTel.quantiteTel)}}
+
 <div class="row">
   <div class="col"><a href="{{path('utilisateur_tels')}} " class="btn btn-warning btn-block">Annuler</a></div>
   <div class="col"><input type="submit", class="btn btn-success btn-block" value=
@@ -30,6 +31,8 @@ d'un Tel</h1>
   "Modifier le tel"
   {% endif %}></div>
 </div>
+
+
 
 {{form_end(formTel)}}
 {% endblock %}

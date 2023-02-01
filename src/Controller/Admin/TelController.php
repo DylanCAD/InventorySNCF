@@ -10,10 +10,33 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TelController extends AbstractController
 {
+
+        /**
+     * @Route("/admin/tel/{id}/augmenter-quantite", name="tel_increase_quantite")
+     */    
+    public function increaseQuantite(Tel $tel): RedirectResponse
+    {
+        $tel->increaseQuantite();
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('admin_tels');
+    }
+
+
+    /**
+     * @Route("/admin/tel/{id}/diminuer-quantite", name="tel_decrease_quantite")
+     */
+    public function decreaseQuantite(Tel $tel): RedirectResponse
+    {
+        $tel->decreaseQuantite();
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('admin_tels');
+    }
+
     /**
      * @Route("/admin/tels", name="admin_tels", methods={"GET"})
      */

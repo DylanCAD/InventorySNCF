@@ -30,7 +30,7 @@ class Tel
     /**
      * @ORM\Column(type="integer")
      */
-    private $quantite_Tel;
+    private $quantite_Tel = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="tels")
@@ -107,6 +107,19 @@ class Tel
     {
         $this->quantite_Tel = $quantite_Tel;
 
+        return $this;
+    }
+
+    
+    public function decreaseQuantite(): self
+    {
+        $this->quantite_Tel--;
+        return $this;
+    }
+
+    public function increaseQuantite(): self
+    {
+        $this->quantite_Tel++;
         return $this;
     }
 

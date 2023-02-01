@@ -9,11 +9,10 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col-1">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ID PROD</th>
-      <th scope="col-5">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Libellé</th>
+      <th scope="col-1"> ID PROD</th>
+      <th scope="col-5">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Libellé</th>
       <th scope="col-2">Dernière Modification</th>
       <th scope="col-2">Quantité</th>
-      <th scope="col-2">Action</th>
     </tr>
   </thead>
   
@@ -37,20 +36,35 @@
             {{leTel.libelleTel}}
             </p>
             </td>
-           
             <td scope="col-1">{{leTel.lastModifTel|date("m/d/Y")}}</td>
-            <td scope="col-1">{{leTel.quantiteTel}}</td>
-           <td class="col-2">
+
+
+
+<td scope="col-1">
+           <div class="input-group input-group-sm justify-content-center">
+             <a href="{{ path("tel_decrease_quantite", { 'id': leTel.id})}}" class="btn btn-sm btn-outline-primary">
+    <span class="fas fa-minus"></span>
+     </a>
+     <span class="input-group-text bg-white border-top border-bottom"> {{leTel.quantiteTel}}</span>   
+    <a href="{{ path("tel_increase_quantite", { 'id': leTel.id})}}" class="btn btn-sm btn-outline-primary">
+      <span class="fas fa-plus"></span>
+  </a>
+
+  </div>
+            </td>
+
+
+            {#<td class="col-2">
             <a href=" {{path('utilisateur_tel_modif', {'id': leTel.id })}} " class="btn btn-primary"><i class="fas fa-pen"></i></a>
-            {#<a class="btn btn-danger" 
+           <a class="btn btn-danger" 
             data-toggle="modal" 
             data-target="#modalSimple"
             data-titre="Suppression d'un tel"
             data-message="Etes vous sur de vouloir supprimer le tel : {{ leTel.libelleTel }}"
             data-libelleBouton = "Supprimer le tel"
             data-lien= " {{ path('utilisateur_tel_suppression', {'id': leTel.id}) }}"
-            ><i class="far fa-trash-alt"></i></a>#}
-            </td>
+            ><i class="far fa-trash-alt"></i></a>
+            </td>#}
             </tr>
         {% endfor %}
 </tbody>
