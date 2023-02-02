@@ -3,16 +3,12 @@
 
 
 {% block body %}
-<h2 class="text-center pt-2 ">
-{% if (app.request.attributes.get('_route')=="admin_tel_modif") %}
-  Modification
-{% else %}
-Ajout
-{% endif %}
-d'un Tel</h1>
+<h2 class="text-center pt-2 ">Attribution d'un CP</h2>
 
 {{form_start(formTel,{'attr':{'novalidate':'novalidate'}})}}
 
+{{form_row(formTel.cpUsers)}}
+{{form_row(formTel.cpCheminaux)}}
 {{form_row(formTel.libelleTel)}}
 <div class="row">
   <div class="col">{{form_row(formTel.appareil)}}</div>
@@ -20,16 +16,17 @@ d'un Tel</h1>
   <div class="col">{{form_row(formTel.modele)}}</div>
 </div>
 {{form_row(formTel.lastModifTel)}}
-{{form_row(formTel.quantiteTel)}}
+{{form_row(formTel.numSerie)}}
+
 <div class="row">
-  <div class="col"><a href="{{path('admin_tels')}} " class="btn btn-warning btn-block">Annuler</a></div>
-  <div class="col"><input type="submit", class="btn btn-success btn-block" value=
+  <div class="col"><a href="{{path('admin_tels')}} " class="btn btn-success btn-block">Valider</a></div>
+  {#<div class="col"><input type="submit", class="btn btn-success btn-block" value=
   {% if (app.request.attributes.get('_route')=="admin_tel_ajout") %}
   "Ajouter le tel"
-
+  
   {% else %}
   "Modifier le tel"
-  {% endif %}></div>
+  {% endif %}></div>#}
 </div>
 
 {{form_end(formTel)}}

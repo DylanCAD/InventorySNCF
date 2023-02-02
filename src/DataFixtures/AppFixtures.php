@@ -110,11 +110,12 @@ class AppFixtures extends Fixture
                     ->setInventaire($this->getReference("inventaire".$value[4]))
                     ->setAppareil($this->getReference("appareil".$value[5]))
                     ->setMarque($this->getReference("marque".$value[6]))
-                    ->setModele($this->getReference("modele".$value[7]));
+                    ->setModele($this->getReference("modele".$value[7]))
+                    ->setCpUsers($value[8])
+                    ->setCpCheminaux($value[9])
+                    ->setNumSerie($value[10]);;
             $manager->persist($tel);
         }
-
-
 
         $manager->flush();
     }

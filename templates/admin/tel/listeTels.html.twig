@@ -19,7 +19,7 @@
   
   <tbody>
         {% for leTel in lesTels %}
-              {% if (leTel.quantiteTel == 0) %}
+              {% if (leTel.quantiteTel <= 0) %}
               <table class="table table-danger">
               {% else %}
               <table class="table table-hover">
@@ -42,11 +42,11 @@
 
 <td scope="col-1">
            <div class="input-group input-group-sm justify-content-center">
-             <a href="{{ path("tel_decrease_quantite", { 'id': leTel.id})}}" class="btn btn-sm btn-outline-primary">
-    <span class="fas fa-minus"></span>
+             <a href="{{ path("admin_tels_decrease_quantite", { 'id': leTel.id})}}" class="btn btn-sm btn-outline-primary">
+    <span class="fas fa-minus"></span> 
      </a>
      <span class="input-group-text bg-white border-top border-bottom"> {{leTel.quantiteTel}}</span>   
-    <a href="{{ path("tel_increase_quantite", { 'id': leTel.id})}}" class="btn btn-sm btn-outline-primary">
+    <a href="{{ path("admin_tels_increase_quantite", { 'id': leTel.id})}}" class="btn btn-sm btn-outline-primary">
       <span class="fas fa-plus"></span>
   </a>
 

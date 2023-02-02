@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -61,6 +63,22 @@ class Tel
      * @ORM\ManyToOne(targetEntity=Modele::class, inversedBy="tels")
      */
     private $Modele;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cpUsers;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cpCheminaux;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $numSerie;
+
 
     public function getId(): ?int
     {
@@ -194,4 +212,41 @@ class Tel
 
         return $this;
     }
+
+    public function getCpUsers(): ?string
+    {
+        return $this->cpUsers;
+    }
+
+    public function setCpUsers(string $cpUsers): self
+    {
+        $this->cpUsers = $cpUsers;
+
+        return $this;
+    }
+
+    public function getCpCheminaux(): ?string
+    {
+        return $this->cpCheminaux;
+    }
+
+    public function setCpCheminaux(string $cpCheminaux): self
+    {
+        $this->cpCheminaux = $cpCheminaux;
+
+        return $this;
+    }
+
+    public function getNumSerie(): ?string
+    {
+        return $this->numSerie;
+    }
+
+    public function setNumSerie(?string $numSerie): self
+    {
+        $this->numSerie = $numSerie;
+
+        return $this;
+    }
+
 }

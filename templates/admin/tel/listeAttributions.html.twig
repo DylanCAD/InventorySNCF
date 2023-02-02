@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}gestion attributions{% endblock %}
+
+{% block body %}
+<h2 class="text-center pt-2 ">Gestion des attributions</h2>
+<hr>        
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col-1">CPUsers</th>      
+      <th scope="col-2">CPCheminaux</th>
+      <th scope="col-1">IDPROD</th>
+      <th scope="col-5">Libellé</th>
+      <th scope="col-2">DateAttribu</th>
+      <th scope="col-2">NumSerie</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+        {% for leTel in lesTels %}
+            <tr>
+            <td scope="col-1">{{leTel.cpUsers}}</td>
+            <td scope="col-1">{{leTel.cpCheminaux}}</td>
+            <td scope="col-1">{{leTel.id}}</td>
+            <td scope="col-5">
+            <p class="d-flex flex-row">
+                <div class="align-self-center badge badge-success"> {{leTel.appareil.genreappareil}}</div>
+                <div class="align-self-center badge badge-success"> {{leTel.marque.nommarque}}</div>
+                <div class="align-self-center badge badge-success"> {{leTel.modele.nommodele}}</div>
+            </p>
+            <p>
+            {{leTel.libelleTel}}
+            </p>
+            </td>
+            <td scope="col-2">{{leTel.lastModifTel|date("m/d/Y")}}</td>
+            <td scope="col-1">{{leTel.numSerie}}</td>
+            </tr>
+        {% endfor %}
+</tbody>
+</table>
+{% endblock %}
+{% block javascripts %}
+  {% include "include/_modale.html.twig" %}
+{% endblock %}

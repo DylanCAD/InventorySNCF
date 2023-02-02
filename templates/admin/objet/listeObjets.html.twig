@@ -20,7 +20,7 @@
 
   <tbody>
         {% for leObjet in lesObjets %}
-        {% if (leObjet.quantiteObjet == 0) %}
+        {% if (leObjet.quantiteObjet <= 0) %}
               <table class="table table-danger">
               {% else %}
               <table class="table table-hover">
