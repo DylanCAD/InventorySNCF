@@ -72,6 +72,11 @@ class Objet
      */
     private $Modele;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $numSerieObjet;
+
 
     public function __construct()
     {
@@ -215,6 +220,18 @@ class Objet
     public function setModele(?Modele $Modele): self
     {
         $this->Modele = $Modele;
+
+        return $this;
+    }
+
+    public function getNumSerieObjet(): ?string
+    {
+        return $this->numSerieObjet;
+    }
+
+    public function setNumSerieObjet(?string $numSerieObjet): self
+    {
+        $this->numSerieObjet = $numSerieObjet;
 
         return $this;
     }

@@ -7,16 +7,7 @@
 
 {{form_start(formTel,{'attr':{'novalidate':'novalidate'}})}}
 
-{{form_row(formTel.cpUsers)}}
-{{form_row(formTel.cpCheminaux)}}
-{{form_row(formTel.libelleTel)}}
-<div class="row">
-  <div class="col">{{form_row(formTel.appareil)}}</div>
-  <div class="col">{{form_row(formTel.marque)}}</div>
-  <div class="col">{{form_row(formTel.modele)}}</div>
-</div>
 {{form_row(formTel.lastModifTel)}}
-{{form_row(formTel.numSerie)}}
 
 <div class="row">
   <div class="col"><a href="{{path('admin_tels')}} " class="btn btn-success btn-block">Valider</a></div>

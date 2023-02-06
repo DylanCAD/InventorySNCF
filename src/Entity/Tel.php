@@ -67,16 +67,6 @@ class Tel
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $cpUsers;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $cpCheminaux;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $numSerie;
 
 
@@ -209,30 +199,6 @@ class Tel
     public function setModele(?Modele $Modele): self
     {
         $this->Modele = $Modele;
-
-        return $this;
-    }
-
-    public function getCpUsers(): ?string
-    {
-        return $this->cpUsers;
-    }
-
-    public function setCpUsers(string $cpUsers): self
-    {
-        $this->cpUsers = $cpUsers;
-
-        return $this;
-    }
-
-    public function getCpCheminaux(): ?string
-    {
-        return $this->cpCheminaux;
-    }
-
-    public function setCpCheminaux(string $cpCheminaux): self
-    {
-        $this->cpCheminaux = $cpCheminaux;
 
         return $this;
     }

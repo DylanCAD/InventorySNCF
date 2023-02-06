@@ -33,6 +33,9 @@
                 <div class="align-self-center badge badge-success"> {{leObjet.appareil.genreappareil}}</div>
                 <div class="align-self-center badge badge-success"> {{leObjet.marque.nommarque}}</div>
                 <div class="align-self-center badge badge-success"> {{leObjet.modele.nommodele}}</div>
+                 {% if (leObjet.numSerieObjet == true ) %}<div class="align-self-center badge badge-success">NUM SERIE : {{leObjet.numSerieObjet}}</div>
+                 {% else %}
+                 {% endif %}
             </p>
             <p>
             {{leObjet.libelleObjet}}

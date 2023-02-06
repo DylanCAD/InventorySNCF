@@ -57,6 +57,14 @@ class TelType extends AbstractType
                 'class' => Modele::class,
                 'choice_label' => 'nommodele'
             ])
+
+            ->add('numSerie', TextType::class,[
+                'label'=> "Num serie",
+                'attr'=>[
+                    "placeholder"=>"Saisir le num serie"
+                ]
+            ])
+
             //->add('valider', SubmitType::class)
         ;
     }

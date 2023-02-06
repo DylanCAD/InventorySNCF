@@ -31,6 +31,9 @@
                 <div class="align-self-center badge badge-success"> {{leTel.appareil.genreappareil}}</div>
                 <div class="align-self-center badge badge-success"> {{leTel.marque.nommarque}}</div>
                 <div class="align-self-center badge badge-success"> {{leTel.modele.nommodele}}</div>
+                 {% if (leTel.numSerie == true ) %}<div class="align-self-center badge badge-success">NUM SERIE : {{leTel.numSerie}}</div>
+                 {% else %}
+                 {% endif %}
             </p>
             <p>
             {{leTel.libelleTel}}

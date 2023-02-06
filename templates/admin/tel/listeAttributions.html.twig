@@ -20,8 +20,6 @@
   <tbody>
         {% for leTel in lesTels %}
             <tr>
-            <td scope="col-1">{{leTel.cpUsers}}</td>
-            <td scope="col-1">{{leTel.cpCheminaux}}</td>
             <td scope="col-1">{{leTel.id}}</td>
             <td scope="col-5">
             <p class="d-flex flex-row">
@@ -34,7 +32,6 @@
             </p>
             </td>
             <td scope="col-2">{{leTel.lastModifTel|date("m/d/Y")}}</td>
-            <td scope="col-1">{{leTel.numSerie}}</td>
             </tr>
         {% endfor %}
 </tbody>

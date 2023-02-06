@@ -57,6 +57,13 @@ class ObjetType extends AbstractType
                 'class' => Modele::class,
                 'choice_label' => 'nommodele'
             ])
+
+            ->add('numSerieObjet', TextType::class,[
+                'label'=> "Num serie",
+                'attr'=>[
+                    "placeholder"=>"Saisir le num serie"
+                ]
+            ])
             //->add('valider', SubmitType::class)
         ;
     }

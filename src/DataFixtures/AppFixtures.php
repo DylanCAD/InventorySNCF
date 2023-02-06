@@ -4,9 +4,11 @@ namespace App\DataFixtures;
 
 use App\Entity\Tel;
 use App\Entity\Objet;
+use App\Entity\CpUser;
 use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Entity\Appareil;
+use App\Entity\Cpchemino;
 use App\Entity\Inventaire;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -111,9 +113,7 @@ class AppFixtures extends Fixture
                     ->setAppareil($this->getReference("appareil".$value[5]))
                     ->setMarque($this->getReference("marque".$value[6]))
                     ->setModele($this->getReference("modele".$value[7]))
-                    ->setCpUsers($value[8])
-                    ->setCpCheminaux($value[9])
-                    ->setNumSerie($value[10]);;
+                    ->setNumSerie($value[8]);
             $manager->persist($tel);
         }
 
