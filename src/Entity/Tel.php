@@ -69,6 +69,11 @@ class Tel
      */
     private $numSerie;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Cputilisateur::class, inversedBy="tels")
+     */
+    private $Cputilisateur;
+
 
     public function getId(): ?int
     {
@@ -211,6 +216,18 @@ class Tel
     public function setNumSerie(?string $numSerie): self
     {
         $this->numSerie = $numSerie;
+
+        return $this;
+    }
+
+    public function getCputilisateur(): ?Cputilisateur
+    {
+        return $this->Cputilisateur;
+    }
+
+    public function setCputilisateur(?Cputilisateur $Cputilisateur): self
+    {
+        $this->Cputilisateur = $Cputilisateur;
 
         return $this;
     }

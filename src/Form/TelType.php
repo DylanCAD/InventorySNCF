@@ -64,6 +64,7 @@ class TelType extends AbstractType
                     "placeholder"=>"Saisir le num serie"
                 ]
             ])
+            
 
             //->add('valider', SubmitType::class)
         ;
@@ -75,4 +76,5 @@ class TelType extends AbstractType
             'data_class' => Tel::class,
         ]);
     }
+ 
 }

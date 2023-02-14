@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Tel;
 use App\Form\TelType;
-use App\Form\TelTypeAttribution;
+use App\Form\TelAttributionType;
 use App\Repository\TelRepository;
 use App\Repository\ObjetRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,27 +35,6 @@ class TelController extends AbstractController
     {
         $tel->decreaseQuantite();
         $this->getDoctrine()->getManager()->flush();
-
-        if($tel == null){
-            $tel=new Tel();
-            $mode="ajouté";
-        }else{
-            $mode="modifié";
-        }
-        $form=$this->createForm(TelTypeAttribution::class, $tel);
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid() )
-        {
-            $manager->persist($tel);
-            $manager->flush();
-            $this->addFlash("success","La quantité a bien été $mode");
-            return $this->redirectToRoute('admin_tels');
-        }
-        return $this->render('admin/tel/formAttribution.html.twig', [
-            'formTel' => $form->createView()
-            
-        ]);
-
         return $this->redirectToRoute('admin_tels');
     }
 
@@ -106,16 +85,5 @@ class TelController extends AbstractController
         $manager->flush();
         $this->addFlash("success","Le tel a bien été supprimé");
         return $this->redirectToRoute('admin_tels');
-    }
-
-    /**
-     * @Route("/admin/attributions", name="admin_attributtions", methods={"GET"})
-     */
-    public function listeAttributions(TelRepository $repo)
-    {
-        $tels=$repo->findAll();
-        return $this->render('admin/tel/listeAttributions.html.twig', [
-            'lesTels' => $tels
-        ]);
     }
 }

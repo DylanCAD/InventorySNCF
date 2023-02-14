@@ -8,8 +8,10 @@ use App\Entity\CpUser;
 use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Entity\Appareil;
+use App\Entity\Cpchemin;
 use App\Entity\Cpchemino;
 use App\Entity\Inventaire;
+use App\Entity\Cputilisateur;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -96,6 +98,34 @@ class AppFixtures extends Fixture
             $manager->persist($objet);
         }
 
+        $fichierCpcheminCsv=fopen(__DIR__."/cpchemin.csv","r");
+        while (!feof($fichierCpcheminCsv)) {
+            $lesCpchemins[]=fgetcsv($fichierCpcheminCsv);
+        }
+        fclose($fichierCpcheminCsv);
+        
+        foreach ($lesCpchemins as $value) {
+            $cpchemin=new Cpchemin();
+            $cpchemin   ->setId(intval($value[0]))
+                        ->setNomCpchemin($value[1]);
+            $manager->persist($cpchemin);
+            $this->addReference("cpchemin".$value[0],$cpchemin);
+        }
+
+        $fichierCputilisateurCsv=fopen(__DIR__."/cputilisateur.csv","r");
+        while (!feof($fichierCputilisateurCsv)) {
+            $lesCputilisateurs[]=fgetcsv($fichierCputilisateurCsv);
+        }
+        fclose($fichierCputilisateurCsv);
+        
+        foreach ($lesCputilisateurs as $value) {
+            $cputilisateur=new Cputilisateur();
+            $cputilisateur  ->setId(intval($value[0]))
+                            ->setNomCputilisateur($value[1])
+                            ->setCpchemin($this->getReference("cpchemin".$value[2]));
+            $manager->persist($cputilisateur);
+            $this->addReference("cputilisateur".$value[0],$cputilisateur);
+        }
 
         $fichierTelCsv=fopen(__DIR__."/tel.csv","r");
         while (!feof($fichierTelCsv)) {
@@ -113,8 +143,9 @@ class AppFixtures extends Fixture
                     ->setAppareil($this->getReference("appareil".$value[5]))
                     ->setMarque($this->getReference("marque".$value[6]))
                     ->setModele($this->getReference("modele".$value[7]))
-                    ->setNumSerie($value[8]);
-            $manager->persist($tel);
+                    ->setNumSerie($value[8])
+                    ->setCputilisateur($this->getReference("cputilisateur".$value[9]));
+                    $manager->persist($tel);
         }
 
         $manager->flush();

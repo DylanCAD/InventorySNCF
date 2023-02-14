@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}gestion attributions{% endblock %}
+
+{% block body %}
+<h2 class="text-center pt-2 ">Gestion des attributions</h2>
+<a href=" {{path('admin_cputilisateur_ajout')}} " class="btn btn-success">Ajouter un cp utilisateur</a>
+
+<hr>        
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col-1">CPUsers</th>      
+      <th scope="col-2">CPCheminaux</th>
+      <th scope="col-1">IDPROD</th>
+      <th scope="col-5">Libellé</th>
+      <th scope="col-2">DateAttribu</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+        {% for leCputilisateur in lesCputilisateurs %}
+            <tr>            
+            <div class="align-self-center badge badge-success"></div>
+            <td scope="col-1">
+            
+                        <p>
+            {{leCputilisateur.nomCputilisateur}}
+            </p>
+            
+            </td>
+            <td scope="col-1">  {{leCputilisateur.Cpchemin.nomCpchemin}} </td>
+            
+
+            
+            <td scope="col-1"></td>
+            <td scope="col-5">
+            <p class="d-flex flex-row">
+                <div class="align-self-center badge badge-success"> </div>
+                <div class="align-self-center badge badge-success"></div>
+                <div class="align-self-center badge badge-success"> </div>
+            </p>
+            <p>
+           
+            </p>
+            </td>
+            <td scope="col-2">|date("m/d/Y")</td>
+            </tr>
+        {% endfor %}
+</tbody>
+</table>
+{% endblock %}
+{% block javascripts %}
+  {% include "include/_modale.html.twig" %}
+{% endblock %}
