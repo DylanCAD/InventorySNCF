@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Cpchemin;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Cpchemin>
@@ -54,13 +55,13 @@ class CpcheminRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Cpchemin
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+/**
+ * @return QueryBuilder Returns a QueryBuilder
+ */
+public function listeCpcheminSimple():QueryBuilder
+{
+    return $this->createQueryBuilder('cpchemin')
+        ->orderBy('cpchemin.nomCpchemin','ASC')
+    ;
+}
 }

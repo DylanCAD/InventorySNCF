@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Marque;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Marque>
@@ -54,13 +55,14 @@ class MarqueRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Marque
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+/**
+ * @return QueryBuilder Returns a QueryBuilder
+ */
+public function listeMarqueSimple():QueryBuilder
+{
+    return $this->createQueryBuilder('m')
+        ->orderBy('m.nomMarque','ASC')
+    ;
+}
+
 }

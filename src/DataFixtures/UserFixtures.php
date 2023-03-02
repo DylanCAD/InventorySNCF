@@ -21,25 +21,61 @@ class UserFixtures extends Fixture
         $faker=Factory::create("fr_FR");
 
             $user=new User();
-            $user   ->setNom($faker->lastName())
-                    ->setPrenom($faker->firstName())
-                    ->setUuid($faker->uuid())
+            $user   ->setNom("Nyankam")
+                    ->setPrenom("Noé")
+                    ->setUuid("0400777C")
                     ->setRoles(['ROLE_UTILISATEUR'])
                     ->setPassword( $this->userPassword->hashPassword(
                         $user,
-                        "SNCFutilisateur1234"
+                        "1234"
+                    ))
+                    ;
+            $manager->persist($user);
+
+            $user=new User();
+            $user   ->setNom("Schattel")
+                    ->setPrenom("Jérôme")
+                    ->setUuid("7903868L")
+                    ->setRoles(['ROLE_UTILISATEUR'])
+                    ->setPassword( $this->userPassword->hashPassword(
+                        $user,
+                        "1234"
+                    ))
+                    ;
+            $manager->persist($user);
+
+            $user=new User();
+            $user   ->setNom("Dai")
+                    ->setPrenom("Johann")
+                    ->setUuid("9508900L")
+                    ->setRoles(['ROLE_UTILISATEUR'])
+                    ->setPassword( $this->userPassword->hashPassword(
+                        $user,
+                        "1234"
+                    ))
+                    ;
+            $manager->persist($user);
+
+            $user=new User();
+            $user   ->setNom("Nzau")
+                    ->setPrenom("Josual")
+                    ->setUuid("9508707B")
+                    ->setRoles(['ROLE_UTILISATEUR'])
+                    ->setPassword( $this->userPassword->hashPassword(
+                        $user,
+                        "1234"
                     ))
                     ;
             $manager->persist($user);
         
         $admin=new User();
-        $admin  ->setNom("admin")
-                ->setPrenom("DKA")
-                ->setUuid("admin1234")
+        $admin  ->setNom("Ravary")
+                ->setPrenom("William")
+                ->setUuid("7109649E")
                 ->setRoles(['ROLE_ADMIN'])
                 ->setPassword( $this->userPassword->hashPassword(
                     $admin,
-                    "SNCFadministrateur1234"
+                    "0000"
                 ))
                 ;
         $manager->persist($admin);

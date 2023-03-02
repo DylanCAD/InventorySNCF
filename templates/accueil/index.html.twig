@@ -3,34 +3,42 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-<div class="jumbotron">
-    <center><p1 class="display-4"> 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<center>
 
 <style>
-p1 {
-	color: rgb(21, 172, 122);
+body {
+	background-image:url(../image/photo1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-</style>Bienvenue sur l'application de gestion d'inventaire INVENTORY</p1>
 
-    <hr class="my-4">
-    <p class="lead">
+</style>
+
      {# <a class="btn btn-primary btn-lg" href="#" role="button">CATEGORIE 1</a>
       <a class="btn btn-primary btn-lg" href="#" role="button">CATEGORIE 2</a>
       <a class="btn btn-primary btn-lg" href="#" role="button">TUTO</a>
     </p></center>#}
 
-<div>
-    <div style="float: left">
+<br><br><br><br><br>
+
+<div class="jumbotron"
+
+    style="float: left">
             <img src={{asset("image/giphy.gif")}} width="90%">
     </div>
-    <div>
-        <span color="primary" class="ColorSpan"><h4>INVENTORY,</h4></span>
-<p>Est une application de gestion d'inventaire qui permet à ces utilisateurs de consulter la quantité des produits stockés.</p>
-</div>              
+
+    <div class="jumbotron"
+        span color="primary" class="ColorSpan"><U><h2>Bienvenue sur l'application INVENTORY</h2></U></span>
+<br>
+<p>Que ce soit pour la gestion de votre inventaire, le suivi des entrées et des sorties de matériel, INVENTORY, notre logiciel de gestion d’inventaire !</p>
         {% if app.user %}
             {% else %}
             <button  type="button" class="btn btn-outline-secondary"><a href=" {{path('app_login')}} " class="nav-link">Connexion</a></button>
         {% endif %}
-<div>
+<br><br><br>
+
+</div>
 
 {% endblock %}

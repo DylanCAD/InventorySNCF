@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use Doctrine\ORM\Query;
 use App\Entity\Cputilisateur;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Model\FiltreCputilisateur;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Cputilisateur>
@@ -38,21 +40,34 @@ class CputilisateurRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+   
+    
+    /**
+     * @return Cputilisateur[] Returns an array of Objet objects
+     */
 
-//    /**
-//     * @return Cputilisateur[] Returns an array of Cputilisateur objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+     public function listeCputilisateursCompletePaginee(FiltreCputilisateur $filtre=null): ?Query
+     {
+         $query= $this->createQueryBuilder('cp')
+             ->select('cp')
+             ->orderBy('cp.id', 'ASC');
+             
+             if(!empty($filtre->idprodtel)){
+                 $query->andWhere('cp.idprodtel like :idprodtelcherche')
+                 ->setParameter('idprodtelcherche', "%{$filtre->idprodtel}%");
+             }
+             if(!empty($filtre->idprodobjet)){
+                $query->andWhere('cp.idprodobjet like :idprodobjetcherche')
+                ->setParameter('idprodobjetcherche', "%{$filtre->idprodobjet}%");
+             }
+             if(!empty($filtre->cpchemin)){
+                 $query->andWhere('cp.Cpchemin = :cpchemincherche')
+                 ->setParameter('cpchemincherche', $filtre->cpchemin);
+             }
+
+         ;
+         return $query->getQuery();
+     }
 
 //    public function findOneBySomeField($value): ?Cputilisateur
 //    {

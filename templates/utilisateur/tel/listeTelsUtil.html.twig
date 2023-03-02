@@ -5,8 +5,16 @@
 {% block body %}
 <h2 class="text-center pt-2 ">Gestion des tels</h2>
 {#<a href=" {{path('utilisateur_tel_ajout')}} " class="btn btn-success">Ajouter un tel</a>#}
-<hr>        
-<table class="table table-hover">
+<br>
+{{ form_start(formFiltreTel)}}
+<div class="row">
+  <div class="col-6">  {{ form_row(formFiltreTel.nom)}}</div>
+  <div class="col-2">  {{ form_row(formFiltreTel.appareil)}}</div>
+  <div class="col-2">  {{ form_row(formFiltreTel.marque)}}</div>
+  <div class="col-2">  {{ form_row(formFiltreTel.modele)}}</div>
+</div>
+  <button type="submit" class ="btn btn-warning">Rechercher</button>
+{{ form_end(formFiltreTel)}}<table class="table table-hover">
   <thead>
     <tr>
       <th scope="col-1"> ID PROD</th>
@@ -16,7 +24,7 @@
     </tr>
   </thead>
   
-
+<br>
   <tbody>
         {% for leTel in lesTels %}
         {% if (leTel.quantiteTel == 0) %}

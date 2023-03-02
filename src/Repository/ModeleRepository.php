@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Modele;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Modele>
@@ -54,13 +55,14 @@ class ModeleRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Modele
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+
+/**
+ * @return QueryBuilder Returns a QueryBuilder
+ */
+public function listeModeleSimple():QueryBuilder
+{
+    return $this->createQueryBuilder('mod')
+        ->orderBy('mod.nomModele','ASC')
+    ;
+}
 }

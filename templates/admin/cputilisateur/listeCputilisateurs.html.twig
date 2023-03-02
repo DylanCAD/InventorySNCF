@@ -1,20 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}gestion attributions{% endblock %}
+{% block title %}attributions{% endblock %}
 
 {% block body %}
-<h2 class="text-center pt-2 ">Gestion des attributions</h2>
-<a href=" {{path('admin_cputilisateur_ajout')}} " class="btn btn-success">Ajouter un cp utilisateur</a>
+<h2 class="text-center pt-2 ">Attributions</h2>
+{#<a href=" {{path('admin_cputilisateur_ajout')}} " class="btn btn-success">Ajouter un cp utilisateur</a>#}
 
-<hr>        
+<br>
+{{ form_start(formFiltreCputilisateur)}}
+<div class="row">
+  <div class="col-3">  {{ form_row(formFiltreCputilisateur.idprodtel)}}</div>
+  <div class="col-3">  {{ form_row(formFiltreCputilisateur.idprodobjet)}}</div>
+  <div class="col-2">  {{ form_row(formFiltreCputilisateur.cpchemin)}}</div>
+</div>
+  <button type="submit" class ="btn btn-warning">Rechercher</button>
+{{ form_end(formFiltreCputilisateur)}}
+
+<br>               
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col-1">CPUsers</th>      
-      <th scope="col-2">CPCheminaux</th>
-      <th scope="col-1">IDPROD</th>
-      <th scope="col-5">Libellé</th>
-      <th scope="col-2">DateAttribu</th>
+      <th scope="col-1">CP Users</th>      
+      <th scope="col-2">CP Cheminaux</th>
+      <th scope="col-1">ID TEL</th>
+      <th scope="col-1">ID Objet</th>
+      <th scope="col-2">Date Attribution</th>
     </tr>
   </thead>
   
@@ -24,27 +34,27 @@
             <div class="align-self-center badge badge-success"></div>
             <td scope="col-1">
             
-                        <p>
+            <p>
             {{leCputilisateur.nomCputilisateur}}
             </p>
             
             </td>
-            <td scope="col-1">  {{leCputilisateur.Cpchemin.nomCpchemin}} </td>
-            
+            <td scope="col-1">{{leCputilisateur.Cpchemin.nomCpchemin}} </td>
+            <td scope="col-1">{{leCputilisateur.idprodtel}}</td>
+            <td scope="col-1">{{leCputilisateur.idprodobjet}}</td>
 
-            
-            <td scope="col-1"></td>
-            <td scope="col-5">
-            <p class="d-flex flex-row">
-                <div class="align-self-center badge badge-success"> </div>
-                <div class="align-self-center badge badge-success"></div>
-                <div class="align-self-center badge badge-success"> </div>
-            </p>
-            <p>
-           
-            </p>
+            <td scope="col-2">{{leCputilisateur.datecputilisateur|date("m/d/Y")}}</td>
+
+            <td class="col-2">
+            <a class="btn btn-danger" 
+            data-toggle="modal" 
+            data-target="#modalSimple"
+            data-titre="Suppression d'une attribution"
+            data-message="Etes vous sur de vouloir supprimer l'attribution"
+            data-libelleBouton = "Supprimer l'attribution"
+            data-lien= " {{ path('admin_cputilisateur_suppression', {'id': leCputilisateur.id}) }}"
+            ><i class="far fa-trash-alt"></i></a>
             </td>
-            <td scope="col-2">|date("m/d/Y")</td>
             </tr>
         {% endfor %}
 </tbody>

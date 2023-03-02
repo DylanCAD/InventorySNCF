@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Cpchemin;
 use App\Entity\Cputilisateur;
+use App\Model\FiltreCputilisateur;
+use App\Repository\CpcheminRepository;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,55 +18,48 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class CputilisateurType extends AbstractType
+class FiltreCputilisateurType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
 
-            ->add('Cpchemin',EntityType::class, [ 
-            'label'=> "CP cheminaux",
+        ->add('cpchemin', EntityType::class, [ 
             'class' => Cpchemin::class,
-            'choice_label' => 'nomcpchemin'
+            'query_builder'=>function(CpcheminRepository $repo){
+                return $repo->listeCpcheminSimple();
+            },
+            'choice_label' => 'nomCpchemin',
+            'label'=>"CP du cheminaux",
+            'required'=>false
+        ])         
 
-        ])    
-        
-            ->add('nomCputilisateur',TextType::class,[
-            'label'=> "CP",
+        ->add('idprodtel', TextType::class, [
             'attr'=>[
-                "placeholder"=>"Saisir le cp"
-            ]
-        ])      
-
-        ->add('datecputilisateur', DateType::class,[
-            'label'=> "Date d'aujourd'hui",
-            'attr'=>[
-                "placeholder"=>"Saisir la date d'aujourd'hui"
-            ]
+                'placeholder'=>"Saisir le ID du tel"
+            ],
+            'required'=>false,
+            'label'=>"ID du tel"
         ])
 
-        ->add('idprodtel', TextType::class,[
-            'label'=> "ID du tel",
+        ->add('idprodobjet', TextType::class, [
             'attr'=>[
-                "placeholder"=>"Saisir le ID du tel"
-            ]
-        ])
-
-        ->add('idprodobjet', TextType::class,[
-            'label'=> "ID de l'objet",
-            'attr'=>[
-                "placeholder"=>"Saisir le ID de l'objet"
-            ]
+                'placeholder'=>"Saisir le ID de l'objet"
+            ],
+            'required'=>false,
+            'label'=>"ID de l'objet"
         ])
         
         ;
-
 
     }
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Cputilisateur::class,
+            // Configure your form options here
+            'method'=>'get',
+            'csrf_protection'=>false,
+            'data_class'=> FiltreCputilisateur::class
         ]);
     }
 }

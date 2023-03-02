@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Tel;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use App\Model\FiltreTel;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Tel>
@@ -38,6 +40,35 @@ class TelRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+     /**
+     * @return Tel[] Returns an array of Objet objects
+     */
+
+     public function listeTelsCompletePaginee(FiltreTel $filtre=null): ?Query
+     {
+         $query= $this->createQueryBuilder('t')
+             ->select('t')
+             ->orderBy('t.id', 'ASC');
+             if(!empty($filtre->nom)){
+                 $query->andWhere('t.libelle_Tel like :nomcherche')
+                 ->setParameter('nomcherche', "%{$filtre->nom}%");
+             }
+             if(!empty($filtre->appareil)){
+                 $query->andWhere('t.Appareil = :appareilcherche')
+                 ->setParameter('appareilcherche', $filtre->appareil);
+             }
+             if(!empty($filtre->marque)){
+                 $query->andWhere('t.Marque = :marquecherche')
+                 ->setParameter('marquecherche', $filtre->marque);
+             }
+             if(!empty($filtre->modele)){
+                 $query->andWhere('t.Modele = :modelecherche')
+                 ->setParameter('modelecherche', $filtre->modele);
+             }
+         ;
+         return $query->getQuery();
+     }
 
 //    /**
 //     * @return Tel[] Returns an array of Tel objects

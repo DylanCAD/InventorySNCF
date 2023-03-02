@@ -34,22 +34,8 @@ class Objet
      */
     private $quantite_Objet = 0;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="id_Admin")
-     */
-    private $Utilisateur;
 
 
-    /**
-     * @ORM\OneToMany(targetEntity=Admin::class, mappedBy="objet")
-     */
-    private $id_Admin;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Admin::class, inversedBy="objets")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $Admin;
 
     /**
      * @ORM\ManyToOne(targetEntity=Inventaire::class, inversedBy="objets")
@@ -77,11 +63,6 @@ class Objet
      */
     private $numSerieObjet;
 
-
-    public function __construct()
-    {
-        $this->id_Admin = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -140,39 +121,6 @@ class Objet
     public function increaseQuantite(): self
     {
         $this->quantite_Objet++;
-        return $this;
-    }
-
-    public function getUtilisateur(): ?Utilisateur
-    {
-        return $this->Utilisateur;
-    }
-
-    public function setUtilisateur(?Utilisateur $Utilisateur): self
-    {
-        $this->Utilisateur = $Utilisateur;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Admin>
-     */
-    public function getIdAdmin(): Collection
-    {
-        return $this->id_Admin;
-    }
-
-
-    public function getAdmin(): ?Admin
-    {
-        return $this->Admin;
-    }
-
-    public function setAdmin(?Admin $Admin): self
-    {
-        $this->Admin = $Admin;
-
         return $this;
     }
 

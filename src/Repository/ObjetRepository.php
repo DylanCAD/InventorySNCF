@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Objet;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use App\Model\FiltreObjet;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Objet>
@@ -39,20 +41,34 @@ class ObjetRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Objet[] Returns an array of Objet objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Objet[] Returns an array of Objet objects
+     */
+
+    public function listeObjetsCompletePaginee(FiltreObjet $filtre=null): ?Query
+    {
+        $query= $this->createQueryBuilder('o')
+            ->select('o')
+            ->orderBy('o.id', 'ASC');
+            if(!empty($filtre->nom)){
+                $query->andWhere('o.libelle_Objet like :nomcherche')
+                ->setParameter('nomcherche', "%{$filtre->nom}%");
+            }
+            if(!empty($filtre->appareil)){
+                $query->andWhere('o.Appareil = :appareilcherche')
+                ->setParameter('appareilcherche', $filtre->appareil);
+            }
+            if(!empty($filtre->marque)){
+                $query->andWhere('o.Marque = :marquecherche')
+                ->setParameter('marquecherche', $filtre->marque);
+            }
+            if(!empty($filtre->modele)){
+                $query->andWhere('o.Modele = :modelecherche')
+                ->setParameter('modelecherche', $filtre->modele);
+            }
+        ;
+        return $query->getQuery();
+    }
 
 //    public function findOneBySomeField($value): ?Objet
 //    {

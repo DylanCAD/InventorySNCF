@@ -25,12 +25,6 @@ class Inventaire
     private $cathegorie_Inventaire;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="inventaires")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $utilisateur;
-
-    /**
      * @ORM\OneToMany(targetEntity=Objet::class, mappedBy="Inventaire")
      */
     private $objets;
@@ -66,18 +60,6 @@ class Inventaire
     public function setCathegorieInventaire(string $cathegorie_Inventaire): self
     {
         $this->cathegorie_Inventaire = $cathegorie_Inventaire;
-
-        return $this;
-    }
-
-    public function getIdUtilisateur(): ?Utilisateur
-    {
-        return $this->utilisateur;
-    }
-
-    public function setIdUtilisateur(?Utilisateur $utilisateur): self
-    {
-        $this->utilisateur = $utilisateur;
 
         return $this;
     }

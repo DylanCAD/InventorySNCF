@@ -122,7 +122,9 @@ class AppFixtures extends Fixture
             $cputilisateur=new Cputilisateur();
             $cputilisateur  ->setId(intval($value[0]))
                             ->setNomCputilisateur($value[1])
-                            ->setCpchemin($this->getReference("cpchemin".$value[2]));
+                            ->setCpchemin($this->getReference("cpchemin".$value[2]))
+                            ->setDatecputilisateur(new \DateTime($value[3]));
+
             $manager->persist($cputilisateur);
             $this->addReference("cputilisateur".$value[0],$cputilisateur);
         }

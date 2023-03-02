@@ -35,16 +35,6 @@ class Tel
     private $quantite_Tel = 0;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="tels")
-     */
-    private $Utilisateur;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Admin::class, inversedBy="tels")
-     */
-    private $Admin;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Inventaire::class, inversedBy="tels")
      */
     private $Inventaire;
@@ -133,30 +123,6 @@ class Tel
     public function increaseQuantite(): self
     {
         $this->quantite_Tel++;
-        return $this;
-    }
-
-    public function getUtilisateur(): ?Utilisateur
-    {
-        return $this->Utilisateur;
-    }
-
-    public function setUtilisateur(?Utilisateur $Utilisateur): self
-    {
-        $this->Utilisateur = $Utilisateur;
-
-        return $this;
-    }
-
-    public function getAdmin(): ?Admin
-    {
-        return $this->Admin;
-    }
-
-    public function setAdmin(?Admin $Admin): self
-    {
-        $this->Admin = $Admin;
-
         return $this;
     }
 

@@ -5,7 +5,18 @@
 {% block body %}
 <h2 class="text-center pt-2 ">Gestion des objets</h2>
 {#<a href=" {{path('utilisateur_objet_ajout')}} " class="btn btn-success">Ajouter un objet</a>#}
-<hr>        
+<br>
+{{ form_start(formFiltreObjet)}}
+<div class="row">
+  <div class="col-6">  {{ form_row(formFiltreObjet.nom)}}</div>
+  <div class="col-2">  {{ form_row(formFiltreObjet.appareil)}}</div>
+  <div class="col-2">  {{ form_row(formFiltreObjet.marque)}}</div>
+  <div class="col-2">  {{ form_row(formFiltreObjet.modele)}}</div>
+</div>
+  <button type="submit" class ="btn btn-warning">Rechercher</button>
+{{ form_end(formFiltreObjet)}}
+
+<br>  
 <table class="table table-hover">
   <thead>
     <tr>

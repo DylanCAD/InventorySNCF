@@ -34,6 +34,21 @@ class Cputilisateur
      */
     private $Cpchemin;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $datecputilisateur;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $idprodtel;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $idprodobjet;
+
     public function __construct()
     {
         $this->tels = new ArrayCollection();
@@ -103,6 +118,42 @@ class Cputilisateur
     public function setCpchemin(?Cpchemin $Cpchemin): self
     {
         $this->Cpchemin = $Cpchemin;
+
+        return $this;
+    }
+
+    public function getDatecputilisateur(): ?\DateTimeInterface
+    {
+        return $this->datecputilisateur;
+    }
+
+    public function setDatecputilisateur(?\DateTimeInterface $datecputilisateur): self
+    {
+        $this->datecputilisateur = $datecputilisateur;
+
+        return $this;
+    }
+
+    public function getIdprodtel(): ?string
+    {
+        return $this->idprodtel;
+    }
+
+    public function setIdprodtel(?string $idprodtel): self
+    {
+        $this->idprodtel = $idprodtel;
+
+        return $this;
+    }
+
+    public function getIdprodobjet(): ?string
+    {
+        return $this->idprodobjet;
+    }
+
+    public function setIdprodobjet(?string $idprodobjet): self
+    {
+        $this->idprodobjet = $idprodobjet;
 
         return $this;
     }

@@ -4,8 +4,13 @@ namespace App\Controller\Admin;
 
 use App\Entity\Objet;
 use App\Form\ObjetType;
+use App\Model\FiltreObjet;
+use App\Entity\Cputilisateur;
+use App\Form\FiltreObjetType;
+use App\Form\CputilisateurType;
 use App\Repository\ObjetRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,22 +33,42 @@ class ObjetController extends AbstractController
 
     /**
      * @Route("/admin/objet/{id}/diminuer-quantite", name="admin_objets_decrease_quantite")
+     * @Route("/admin/cputilisateur/ajout", name="admin_cputilisateur_ajout", methods={"GET","POST"})
      */
-    public function decreaseQuantite(Objet $objet): RedirectResponse
+    public function decreaseQuantite( Request $request, EntityManagerInterface $manager, Objet $objet)
     {
-        $objet->decreaseQuantite();
-        $this->getDoctrine()->getManager()->flush();
-        return $this->redirectToRoute('admin_objets');
+       
+        $cputilisateur=new Cputilisateur();
+        $form=$this->createForm(CputilisateurType::class, $cputilisateur);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid() )
+        {
+            $objet->decreaseQuantite();
+            $this->getDoctrine()->getManager()->flush();
+            $manager->persist($cputilisateur);
+            $manager->flush();
+            return $this->redirectToRoute('admin_cputilisateurs');
+        }
+        return $this->render('admin/cputilisateur/formAjoutCputilisateur.html.twig', [
+            'formCputilisateur' => $form->createView()
+        ]);
     }
 
     /**
      * @Route("/admin/objets", name="admin_objets", methods={"GET"})
      */
-    public function listeObjets(ObjetRepository $repo)
+    public function listeObjets(ObjetRepository $repo, PaginatorInterface $paginator, Request $request)
     {
-        $objets=$repo->findAll();
+        $filtre=new FiltreObjet();
+        $formFiltreObjet=$this->createForm(FiltreObjetType::class, $filtre);
+        $formFiltreObjet->handleRequest($request);
+        //dd($filtre);
+        $objets = $paginator->paginate(
+        $repo->listeObjetsCompletePaginee($filtre)
+        );
         return $this->render('admin/objet/listeObjets.html.twig', [
-            'lesObjets' => $objets
+            'lesObjets' => $objets,
+            'formFiltreObjet'=>$formFiltreObjet->createView()
         ]);
     }
 

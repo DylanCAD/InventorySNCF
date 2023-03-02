@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Appareil;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Appareil>
@@ -54,13 +55,13 @@ class AppareilRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Appareil
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+/**
+ * @return QueryBuilder Returns a QueryBuilder
+ */
+    public function listeAppareilSimple():QueryBuilder
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.genreAppareil','ASC')
+        ;
+    }
 }

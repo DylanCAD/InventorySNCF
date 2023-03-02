@@ -4,9 +4,14 @@ namespace App\Controller\Utilisateur;
 
 use App\Entity\Tel;
 use App\Form\TelType;
+use App\Model\FiltreTel;
+use App\Form\FiltreTelType;
+use App\Entity\Cputilisateur;
+use App\Form\CputilisateurType;
 use App\Repository\TelRepository;
 use App\Repository\ObjetRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,22 +34,41 @@ class TelControllerUtili extends AbstractController
 
     /**
      * @Route("/utilisateur/tel/{id}/diminuer-quantite", name="tel_decrease_quantite")
+     * @Route("/admin/cputilisateur/ajout", name="admin_cputilisateur_ajout", methods={"GET","POST"})
      */
-    public function decreaseQuantite(Tel $tel): RedirectResponse
+    public function decreaseQuantite(Tel $tel, Request $request, EntityManagerInterface $manager)
     {
-        $tel->decreaseQuantite();
-        $this->getDoctrine()->getManager()->flush();
-        return $this->redirectToRoute('utilisateur_tels');
-    }
+
+        $cputilisateur=new Cputilisateur();
+        $form=$this->createForm(CputilisateurType::class, $cputilisateur);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid() )
+        {
+            $tel->decreaseQuantite();
+            $this->getDoctrine()->getManager()->flush();
+            $manager->persist($cputilisateur);
+            $manager->flush();
+            return $this->redirectToRoute('admin_cputilisateurs');
+        }
+        return $this->render('admin/cputilisateur/formAjoutCputilisateur.html.twig', [
+            'formCputilisateur' => $form->createView()
+        ]);    }
     
     /**
      * @Route("/utilisateur/tels", name="utilisateur_tels", methods={"GET"})
      */
-    public function listeTels(TelRepository $repo)
+    public function listeTels(TelRepository $repo, PaginatorInterface $paginator, Request $request)
     {
-        $tels=$repo->findAll();
+        $filtre=new FiltreTel();
+        $formFiltreTel=$this->createForm(FiltreTelType::class, $filtre);
+        $formFiltreTel->handleRequest($request);
+        //dd($filtre);
+        $tels = $paginator->paginate(
+        $repo->listeTelsCompletePaginee($filtre)
+        );
         return $this->render('utilisateur/tel/listeTelsUtil.html.twig', [
-            'lesTels' => $tels
+            'lesTels' => $tels,
+            'formFiltreTel'=>$formFiltreTel->createView()
         ]);
     }
 
