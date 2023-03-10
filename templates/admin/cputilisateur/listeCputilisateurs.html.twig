@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}attributions{% endblock %}
+{% block title %}historique{% endblock %}
 
 {% block body %}
-<h2 class="text-center pt-2 ">Attributions</h2>
+<h2 class="text-center pt-2 ">Historique</h2>
 {#<a href=" {{path('admin_cputilisateur_ajout')}} " class="btn btn-success">Ajouter un cp utilisateur</a>#}
 
 <br>
@@ -20,8 +20,8 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col-1">CP Users</th>      
       <th scope="col-2">CP Cheminaux</th>
+      <th scope="col-1">CP Users</th>      
       <th scope="col-1">ID TEL</th>
       <th scope="col-1">ID Objet</th>
       <th scope="col-2">Date Attribution</th>
@@ -32,6 +32,7 @@
         {% for leCputilisateur in lesCputilisateurs %}
             <tr>            
             <div class="align-self-center badge badge-success"></div>
+            <td scope="col-1">{{leCputilisateur.Cpchemin.nomCpchemin}} </td>
             <td scope="col-1">
             
             <p>
@@ -39,7 +40,7 @@
             </p>
             
             </td>
-            <td scope="col-1">{{leCputilisateur.Cpchemin.nomCpchemin}} </td>
+      
             <td scope="col-1">{{leCputilisateur.idprodtel}}</td>
             <td scope="col-1">{{leCputilisateur.idprodobjet}}</td>
 

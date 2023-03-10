@@ -56,7 +56,7 @@ class FiltreTelType extends AbstractType
                     return $repo->listeModeleSimple();
                 },
                 'choice_label' => 'nomModele',
-                'label'=>"Nom du modele",
+                'label'=>"Nom du model",
                 'required'=>false
             ])
         ;
