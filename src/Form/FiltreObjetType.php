@@ -23,10 +23,10 @@ class FiltreObjetType extends AbstractType
         $builder
             ->add('nom', TextType::class, [
                 'attr'=>[
-                    'placeholder'=>"Saisir une partie du libelle de l'objet recherché"
+                    'placeholder'=>"Saisir une partie du libelle du matériel infortique recherché"
                 ],
                 'required'=>false,
-                'label'=>"Recherche sur le nom de l'objet"
+                'label'=>"Recherche sur le nom du matériel infortique"
             ])
 
             ->add('appareil', EntityType::class, [ 
@@ -35,7 +35,7 @@ class FiltreObjetType extends AbstractType
                     return $repo->listeAppareilSimple();
                 },
                 'choice_label' => 'genreAppareil',
-                'label'=>"Nom de l'appareil",
+                'label'=>"Nom de l'Appareil",
                 'required'=>false
             ])
 
@@ -45,7 +45,7 @@ class FiltreObjetType extends AbstractType
                     return $repo->listeMarqueSimple();
                 },
                 'choice_label' => 'nomMarque',
-                'label'=>"Nom de la marque",
+                'label'=>"Nom de la Marque",
                 'required'=>false
             ])
 
@@ -55,7 +55,7 @@ class FiltreObjetType extends AbstractType
                     return $repo->listeModeleSimple();
                 },
                 'choice_label' => 'nomModele',
-                'label'=>"Nom du model",
+                'label'=>"Nom du Model",
                 'required'=>false
             ])
         ;

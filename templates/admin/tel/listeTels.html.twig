@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}gestion tels{% endblock %}
+{% block title %}gestion Téléphone/Ipad{% endblock %}
 
 {% block body %}
-<h2 class="text-center pt-2 ">Gestion des tels</h2>
-<a href=" {{path('admin_tel_ajout')}} " class="btn btn-success">Ajouter un tel</a>
+<h2 class="text-center pt-2 ">Gestion des Téléphones/Ipads</h2>
+<a href=" {{path('admin_tel_ajout')}} " class="btn btn-success">Ajouter un Téléphone/Ipad</a>
 <br>
 {{ form_start(formFiltreTel)}}
 <div class="row">
@@ -20,10 +20,10 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col-1">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ID PROD</th>
-      <th scope="col-5">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Libellé</th>
-      <th scope="col-2">Dernière Modification</th>
-      <th scope="col-2">Quantité</th>
+      <th scope="col-1">ID du Téléphone/Ipad</th>
+      <th scope="col-5">Libellé du Téléphone/Ipad</th>
+      <th scope="col-2">Date d'ajout du Téléphone/Ipad</th>
+      <th scope="col-2">Quantité du Téléphone/Ipad</th>
       <th scope="col-2">Actions</th>
     </tr>
   </thead>
@@ -73,9 +73,9 @@
             <a class="btn btn-danger" 
             data-toggle="modal" 
             data-target="#modalSimple"
-            data-titre="Suppression d'un tel"
-            data-message="Etes vous sur de vouloir supprimer le tel : {{ leTel.libelleTel }}"
-            data-libelleBouton = "Supprimer le tel"
+            data-titre="Suppression d'un Tel/Ipad"
+            data-message="Etes vous sur de vouloir supprimer le Tel/Ipad : {{ leTel.libelleTel }}"
+            data-libelleBouton = "Supprimer le Tel/Ipad"
             data-lien= " {{ path('admin_tel_suppression', {'id': leTel.id}) }}"
             ><i class="far fa-trash-alt"></i></a>
             </td>
@@ -83,6 +83,9 @@
         {% endfor %}
 </tbody>
 </table>
+      <div class="navigation mx-auto">
+        {{ knp_pagination_render(lesTels) }}
+      </div>
 {% endblock %}
 {% block javascripts %}
   {% include "include/_modale.html.twig" %}

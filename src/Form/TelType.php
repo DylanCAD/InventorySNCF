@@ -25,43 +25,43 @@ class TelType extends AbstractType
         $builder
 
             ->add('libelleTel', TextType::class,[
-                'label'=> "Libelle du tel",
+                'label'=> "Libelle du Téléphone/Ipad",
                 'attr'=>[
-                    "placeholder"=>"Saisir le libelle du tel"
+                    "placeholder"=>"Saisir le libelle du Téléphone/Ipad"
                 ]
             ])
             ->add('lastModifTel', DateType::class,[
-                'label'=> "Date du tel",
+                'label'=> "Date d'ajout Téléphone/Ipad",
                 'attr'=>[
-                    "placeholder"=>"Saisir la date du tel"
+                    "placeholder"=>"Saisir la date d'ajout du Téléphone/Ipad"
                 ]
             ])
             ->add('quantiteTel', NumberType::class,[
-                'label'=> "Quantite du tel",
+                'label'=> "Quantite du Téléphone/Ipad",
                 'attr'=>[
-                    "placeholder"=>"Saisir la quantite du tel"
+                    "placeholder"=>"Saisir la quantite du Téléphone/Ipad"
                 ]
             ])
             ->add('appareil', EntityType::class, [ 
-                'label'=> "Genre de l'appareil",
+                'label'=> "Genre de l'Appareil",
                 'class' => Appareil::class,
                 'choice_label' => 'genreappareil'
             ])
             ->add('marque', EntityType::class, [ 
-                'label'=> "Nom de la marque",
+                'label'=> "Nom de la Marque",
                 'class' => Marque::class,
                 'choice_label' => 'nommarque'
             ])
             ->add('modele', EntityType::class, [ 
-                'label'=> "Nom du modele",
+                'label'=> "Nom du Modele",
                 'class' => Modele::class,
                 'choice_label' => 'nommodele'
             ])
 
             ->add('numSerie', TextType::class,[
-                'label'=> "Num serie",
+                'label'=> "Numéro de Série Serie",
                 'attr'=>[
-                    "placeholder"=>"Saisir le num serie"
+                    "placeholder"=>"Saisir le Numéro de Serie"
                 ]
             ])
             

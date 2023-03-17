@@ -64,7 +64,8 @@ class TelControllerUtili extends AbstractController
         $formFiltreTel->handleRequest($request);
         //dd($filtre);
         $tels = $paginator->paginate(
-        $repo->listeTelsCompletePaginee($filtre)
+        $repo->listeTelsCompletePaginee($filtre),
+        $request->query->getInt('page', 1), 9
         );
         return $this->render('utilisateur/tel/listeTelsUtil.html.twig', [
             'lesTels' => $tels,
@@ -90,7 +91,7 @@ class TelControllerUtili extends AbstractController
         {
             $manager->persist($tel);
             $manager->flush();
-            $this->addFlash("success","Le tel a bien été $mode");
+            $this->addFlash("success","Le Tel/Ipad a bien été $mode");
             return $this->redirectToRoute('utilisateur_tels');
         }
         return $this->render('utilisateur/tel/formAjoutModifTelUtil.html.twig', [
@@ -106,7 +107,7 @@ class TelControllerUtili extends AbstractController
     {
         $manager->remove($tel);
         $manager->flush();
-        $this->addFlash("success","Le tel a bien été supprimé");
+        $this->addFlash("success","Le Tel/Ipad a bien été supprimé");
         return $this->redirectToRoute('utilisateur_tels');
     }
 }

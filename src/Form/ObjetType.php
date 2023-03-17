@@ -25,43 +25,43 @@ class ObjetType extends AbstractType
         $builder
 
             ->add('libelleObjet', TextType::class,[
-                'label'=> "Libelle de l'objet",
+                'label'=> "Libelle du Matériel Informatique",
                 'attr'=>[
-                    "placeholder"=>"Saisir le libelle de l'objet"
+                    "placeholder"=>"Saisir le libelle du Matériel Infortique"
                 ]
             ])
             ->add('lastModifObjet', DateType::class,[
-                'label'=> "Date de l'objet",
+                'label'=> "Date d'ajout du Matériel Infortique",
                 'attr'=>[
-                    "placeholder"=>"Saisir la date de l'objet"
+                    "placeholder"=>"Saisir la date d'ajout du matériel infortique"
                 ]
             ])
             ->add('quantiteObjet', NumberType::class,[
-                'label'=> "Quantite de l'objet",
+                'label'=> "Quantité du Matériel Infortique",
                 'attr'=>[
-                    "placeholder"=>"Saisir la quantite de l'objet"
+                    "placeholder"=>"Saisir la quantite du Matériel Informatique"
                 ]
             ])
             ->add('appareil', EntityType::class, [ 
-                'label'=> "Genre de l'appareil",
+                'label'=> "Genre de l'Appareil",
                 'class' => Appareil::class,
                 'choice_label' => 'genreappareil'
             ])
             ->add('marque', EntityType::class, [ 
-                'label'=> "Nom de la marque",
+                'label'=> "Nom de la Marque",
                 'class' => Marque::class,
                 'choice_label' => 'nommarque'
             ])
             ->add('modele', EntityType::class, [ 
-                'label'=> "Nom du modele",
+                'label'=> "Nom du Modele",
                 'class' => Modele::class,
                 'choice_label' => 'nommodele'
             ])
 
             ->add('numSerieObjet', TextType::class,[
-                'label'=> "Num serie",
+                'label'=> "Numméro de Serie",
                 'attr'=>[
-                    "placeholder"=>"Saisir le num serie"
+                    "placeholder"=>"Saisir le Numéro de Série"
                 ]
             ])
             //->add('valider', SubmitType::class)

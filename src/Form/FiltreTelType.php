@@ -24,10 +24,10 @@ class FiltreTelType extends AbstractType
         $builder
             ->add('nom', TextType::class, [
                 'attr'=>[
-                    'placeholder'=>"Saisir une partie du libelle du tel recherché"
+                    'placeholder'=>"Saisir une partie du libelle du Téléphone/Ipad recherché"
                 ],
                 'required'=>false,
-                'label'=>"Recherche sur le nom du tel"
+                'label'=>"Recherche sur le nom du Téléphone/Ipad"
             ])
 
             ->add('appareil', EntityType::class, [ 
@@ -36,7 +36,7 @@ class FiltreTelType extends AbstractType
                     return $repo->listeAppareilSimple();
                 },
                 'choice_label' => 'genreAppareil',
-                'label'=>"Nom de l'appareil",
+                'label'=>"Nom de l'Appareil",
                 'required'=>false
             ])
 
@@ -46,7 +46,7 @@ class FiltreTelType extends AbstractType
                     return $repo->listeMarqueSimple();
                 },
                 'choice_label' => 'nomMarque',
-                'label'=>"Nom de la marque",
+                'label'=>"Nom de la Marque",
                 'required'=>false
             ])
 

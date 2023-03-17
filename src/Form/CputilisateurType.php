@@ -23,37 +23,37 @@ class CputilisateurType extends AbstractType
         $builder
 
             ->add('Cpchemin',EntityType::class, [ 
-            'label'=> "CP cheminaux",
+            'label'=> "CP du Cheminot",
             'class' => Cpchemin::class,
             'choice_label' => 'nomcpchemin'
 
         ])    
         
             ->add('nomCputilisateur',TextType::class,[
-            'label'=> "CP",
+            'label'=> "CP de l'Utilisateur",
             'attr'=>[
-                "placeholder"=>"Saisir le cp"
+                "placeholder"=>"Saisir le CP de l'Utilisateur"
             ]
         ])      
 
         ->add('datecputilisateur', DateType::class,[
-            'label'=> "Date d'aujourd'hui",
+            'label'=> "Date d'Aujourd'hui",
             'attr'=>[
                 "placeholder"=>"Saisir la date d'aujourd'hui"
             ]
         ])
 
         ->add('idprodtel', TextType::class,[
-            'label'=> "ID du tel",
+            'label'=> "ID du Tel",
             'attr'=>[
-                "placeholder"=>"Saisir le ID du tel"
+                "placeholder"=>"Saisir le ID du Téléphone/Ipad"
             ]
         ])
 
         ->add('idprodobjet', TextType::class,[
-            'label'=> "ID de l'objet",
+            'label'=> "ID du Matériel Informatique",
             'attr'=>[
-                "placeholder"=>"Saisir le ID de l'objet"
+                "placeholder"=>"Saisir le ID du Matériel Informatique"
             ]
         ])
         

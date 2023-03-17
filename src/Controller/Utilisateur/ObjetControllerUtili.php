@@ -63,7 +63,8 @@ class ObjetControllerUtili extends AbstractController
         $formFiltreObjet->handleRequest($request);
         //dd($filtre);
         $objets = $paginator->paginate(
-        $repo->listeObjetsCompletePaginee($filtre)
+        $repo->listeObjetsCompletePaginee($filtre),
+        $request->query->getInt('page', 1), 9
         );
         return $this->render('utilisateur/objet/listeObjetsUtil.html.twig', [
             'lesObjets' => $objets,
@@ -89,7 +90,7 @@ class ObjetControllerUtili extends AbstractController
         {
             $manager->persist($objet);
             $manager->flush();
-            $this->addFlash("success","L'objet a bien été $mode");
+            $this->addFlash("success","Le Matériel Informatique a bien été $mode");
             return $this->redirectToRoute('utilisateur_objets');
         }
         return $this->render('utilisateur/objet/formAjoutModifObjetUtil.html.twig', [
@@ -105,7 +106,7 @@ class ObjetControllerUtili extends AbstractController
     {
         $manager->remove($objet);
         $manager->flush();
-        $this->addFlash("success","L'objet a bien été supprimé");
+        $this->addFlash("success","Le Matériel Informatique a bien été supprimé");
         return $this->redirectToRoute('utilisateur_objets');
     }
 }

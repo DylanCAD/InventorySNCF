@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ajout objet{% endblock %}
+{% block title %}ajout matériel infortique{% endblock %}
 
 {% block body %}
 <h2 class="text-center pt-2 ">
@@ -9,7 +9,7 @@ Modification
 {% else %}
     Ajout
 {% endif %}
-d'un objet</h1>
+d'un matériel infortique</h1>
 
 {{form_start(formObjet,{'attr':{'novalidate':'novalidate'}})}}
 {{form_row(formObjet.libelleObjet)}}
@@ -25,9 +25,9 @@ d'un objet</h1>
   <div class="col"><a href="{{path('admin_objets')}} " class="btn btn-warning btn-block">Annuler</a></div>
   <div class="col"><input type="submit", class="btn btn-success btn-block" value=
   {% if (app.request.attributes.get('_route')=="admin_objet_ajout") %}
-  "Ajouter l'objet"
+  "Ajouter le matériel infortique"
   {% else %}
-  "Modifier l'objet"
+  "Modifier le matériel infortique"
   {% endif %}></div>
 </div>
 

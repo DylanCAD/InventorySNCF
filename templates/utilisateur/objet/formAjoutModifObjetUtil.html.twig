@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}modif objet{% endblock %}
+{% block title %}modif matériel infortique{% endblock %}
 
 {% block body %}
 <h2 class="text-center pt-2 ">
@@ -25,9 +25,9 @@ d'un objet</h1>
   <div class="col"><a href="{{path('utilisateur_objets')}} " class="btn btn-warning btn-block">Annuler</a></div>
   <div class="col"><input type="submit", class="btn btn-success btn-block" value=
   {% if (app.request.attributes.get('_route')=="utilisateur_objet_ajout") %}
-  "Ajouter l'objet"
+  "Ajouter le matériel infortique"
   {% else %}
-  "Modifier l'objet"
+  "Modifier le matériel infortique"
   {% endif %}></div>
 </div>
 

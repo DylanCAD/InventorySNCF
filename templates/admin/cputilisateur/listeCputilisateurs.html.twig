@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}historique{% endblock %}
+{% block title %}historique des attributions{% endblock %}
 
 {% block body %}
-<h2 class="text-center pt-2 ">Historique</h2>
+<h2 class="text-center pt-2 ">Historique des Attributions</h2>
 {#<a href=" {{path('admin_cputilisateur_ajout')}} " class="btn btn-success">Ajouter un cp utilisateur</a>#}
 
 <br>
@@ -20,11 +20,12 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col-2">CP Cheminaux</th>
-      <th scope="col-1">CP Users</th>      
-      <th scope="col-1">ID TEL</th>
-      <th scope="col-1">ID Objet</th>
-      <th scope="col-2">Date Attribution</th>
+      <th scope="col-2">CP du Cheminot</th>
+      <th scope="col-2">CP de l'Utilisateur</th>      
+      <th scope="col-1">ID du Téléphone</th>
+      <th scope="col-1">ID du Matériel Informatique</th>
+      <th scope="col-2">Date de l'Attribution</th>
+      <th scope="col-2">Supprimer une Attribution</th>
     </tr>
   </thead>
   
@@ -51,8 +52,8 @@
             data-toggle="modal" 
             data-target="#modalSimple"
             data-titre="Suppression d'une attribution"
-            data-message="Etes vous sur de vouloir supprimer l'attribution"
-            data-libelleBouton = "Supprimer l'attribution"
+            data-message="Etes vous sur de vouloir supprimer l'Attribution"
+            data-libelleBouton = "Supprimer l'Attribution"
             data-lien= " {{ path('admin_cputilisateur_suppression', {'id': leCputilisateur.id}) }}"
             ><i class="far fa-trash-alt"></i></a>
             </td>

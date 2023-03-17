@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}gestion objets{% endblock %}
+{% block title %}gestion du matériel informatique{% endblock %}
 
 {% block body %}
-<h2 class="text-center pt-2 ">Gestion des objets</h2>
-<a href=" {{path('admin_objet_ajout')}} " class="btn btn-success">Ajouter un objet</a>
+<h2 class="text-center pt-2 ">Gestion du matériel informatique</h2>
+<a href=" {{path('admin_objet_ajout')}} " class="btn btn-success">Ajouter un matériel infortique</a>
 
 <br>
 {{ form_start(formFiltreObjet)}}
@@ -21,10 +21,10 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col-1"> ID PROD</th>
-      <th scope="col-5"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp Libellé</th>
-      <th scope="col-2">Dernière Modification</th>
-      <th scope="col-2">Quantité</th>
+      <th scope="col-1">ID matériel informatique</th>
+      <th scope="col-5">Libellé matériel informatique</th>
+      <th scope="col-2">Date d'ajout matériel infortique</th>
+      <th scope="col-2">Quantité matériel informatique</th>
       <th scope="col-2">Actions</th>
     </tr>
   </thead>
@@ -75,8 +75,8 @@
             <a class="btn btn-danger" 
             data-toggle="modal" 
             data-target="#modalSimple"
-            data-titre="Suppression d'un objet"
-            data-message="Etes vous sur de vouloir supprimer l'objet : {{ leObjet.libelleObjet }}"
+            data-titre="Suppression d'un Matériel Informatique"
+            data-message="Etes vous sur de vouloir supprimer le Matériel Informatique : {{ leObjet.libelleObjet }}"
             data-libelleBouton = "Supprimer l'objet"
             data-lien= " {{ path('admin_objet_suppression', {'id': leObjet.id}) }}"
             ><i class="far fa-trash-alt"></i></a>
@@ -85,6 +85,9 @@
         {% endfor %}
 </tbody>
 </table>
+      <div class="navigation mx-auto">
+        {{ knp_pagination_render(lesObjets) }}
+      </div>
 {% endblock %}
 {% block javascripts %}
   {% include "include/_modale.html.twig" %}

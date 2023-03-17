@@ -9,7 +9,7 @@
 {% else %}
 Ajout
 {% endif %}
-d'un Tel</h1>
+d'un Téléphone/Ipad</h1>
 
 {{form_start(formTel,{'attr':{'novalidate':'novalidate'}})}}
 
@@ -26,10 +26,10 @@ d'un Tel</h1>
   <div class="col"><a href="{{path('admin_tels')}} " class="btn btn-warning btn-block">Annuler</a></div>
   <div class="col"><input type="submit", class="btn btn-success btn-block" value=
   {% if (app.request.attributes.get('_route')=="admin_tel_ajout") %}
-  "Ajouter le tel"
+  "Ajouter le Téléphone/Ipad"
 
   {% else %}
-  "Modifier le tel"
+  "Modifier le Téléphone/Ipad"
   {% endif %}></div>
 </div>
 

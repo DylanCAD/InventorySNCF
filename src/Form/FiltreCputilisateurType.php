@@ -30,24 +30,24 @@ class FiltreCputilisateurType extends AbstractType
                 return $repo->listeCpcheminSimple();
             },
             'choice_label' => 'nomCpchemin',
-            'label'=>"CP du cheminaux",
+            'label'=>"CP du Cheminot",
             'required'=>false
         ])         
 
         ->add('idprodtel', TextType::class, [
             'attr'=>[
-                'placeholder'=>"Saisir le ID du tel"
+                'placeholder'=>"Saisir le ID du Téléphone/Ipad"
             ],
             'required'=>false,
-            'label'=>"ID du tel"
+            'label'=>"ID du Téléphone/Ipad"
         ])
 
         ->add('idprodobjet', TextType::class, [
             'attr'=>[
-                'placeholder'=>"Saisir le ID de l'objet"
+                'placeholder'=>"Saisir le ID du Matériel Informatique"
             ],
             'required'=>false,
-            'label'=>"ID de l'objet"
+            'label'=>"ID du Matériel Informatique"
         ])
         
         ;
